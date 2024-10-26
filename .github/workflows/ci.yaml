@@ -1,0 +1,29 @@
+name: Test Minver and it's functionality
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - first-branch
+
+jobs:
+  test-minver:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract Branch Name
+        id: extract-git-branch-name
+        run: |
+          echo "ENVIRONMENT=${{ github.ref_name }}" >> $GITHUB_ENV
+
+      - name: Set minver version
+        id: set-minver-version
+        run: |
+          VERSION=$(minver -p ${{ env.ENVIRONMENT }})
+          echo VERSION >> $GITHUB_ENV
+
+      - name: Check minver version
+        id: check-minver-version
+        run: |
+          echo ${{ env.VERSION }}
