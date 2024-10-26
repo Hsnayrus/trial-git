@@ -17,6 +17,16 @@ jobs:
         run: |
           echo "ENVIRONMENT=${{ github.ref_name }}" >> $GITHUB_ENV
 
+      - name: Install .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "6.x"
+
+      - name: Install Minver
+        id: install-minver
+        run: |
+          dotnet tool install --global minver-cli --version 6.0.0
+
       - name: Set minver version
         id: set-minver-version
         run: |
