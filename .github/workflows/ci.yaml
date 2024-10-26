@@ -30,8 +30,7 @@ jobs:
       - name: Set minver version
         id: set-minver-version
         run: |
-          VERSION=$(minver -p ${{ env.ENVIRONMENT }})
-          echo VERSION >> $GITHUB_ENV
+          echo "VERSION=$(minver -p ${{ env.ENVIRONMENT }})" >> $GITHUB_ENV
 
       - name: Check minver version
         id: check-minver-version
